@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+<body>
+  <div class="principal">  
+    <div class="navegador">
+      <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+          <div class="container-fluid" >
+            <a class="navbar-brand" href="{% url 'home' %}"><img width="150px" src="https://www.luisjara.cl/img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'info' %}">¿Quien soy?</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'eventos' %}">Eventos</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'tienda' %}">Tienda</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'contactos' %}">Contactos</a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page">Usuario: {{ user.username}}</a
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Cerrar Sesión</a
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+  </div>
+
+      <div class="info">
+        <div class="card mb-3" style="background-color: #b292ee">
+            <img src="imagenes/Luis-Jara-1200x630.jpg"  class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Luis Jara - Cantante</h5>
+              <center>
+              <p class="card-text"> El autor de "Un Golpe de Suerte y "Mañana" nació un 25 de octubre de 1965 (50 años). Comenzó su incursión en la TV como parte del Clan Infantil del programa "Sábados Gigantes". Luego tuvo apariciones como actor en las teleseries "De Cara al Mañana" (TVN - 1982) y "Los Títeres" (Canal 13 - 1984).
+
+                En 1985 ganó un festival estelar del programa "Martes 13" con su single "Ámame", lo que significó el puntapie inicial de una trayectoria llena de éxitos.
+                
+                Como cantante ha lanzado 13 discos de estudio y ha ganado ganado tres Gaviotas de Plata; tres Antorchas; seis Discos de Oro; cuatro Discos de Platino; siete premios APES; Micrófono de Oro en Scheveningen (Holanda); Mejor Intérprete del Festival de Indonesia; Primer Lugar del Festival de Egipto; Primer Lugar del Festival de Curazao, Primer Lugar del Festival de Buga (Colombia).
+                
+                Su carrera como animador se inició en 1995 con "¿Cuánto Vale el Show?" (Chilevisión). Luego condujo "De Aquí No Sale" (1996-2001) y "Calor Humano" (2000-2002) en la misma estación televisiva.
+                
+                Luego llegó a Canal 13, donde animó estelares como "La Movida del Festival", "Vértigo" (2003-2008), "Mucho Lucho" (2003-2006) y "Juntos, el Show de la Mañana" (2007-2008).
+                
+                Actualmente es rostro de Mega, donde ha animado "Un golpe de Lucho" (2009), "Morandé con Compañía" (2009-2011), "Elígeme" (2010-2011), "Yo Soy" (2011-2012), "Coliseo Romano" (2011), "Tu Cara Me Suena" (2012), "Salta a la Vista" (2012) y el matinal "Mucho Gusto" (desde 2013).</p>
+              <p class="card-text">
+            </center>
+                
+            </div>
+          </div>
+      </div>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
+</body>
+<div class="b-example-divider"></div>
+
+<div class="container">
+  <footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+    <p class="text-center text-muted">&copy; 2023 ING. LOLAMUSIC Company.</p>
+  </footer>
+</html>

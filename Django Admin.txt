@@ -1,0 +1,2 @@
+User = admin2
+Pass = adminDuoc
