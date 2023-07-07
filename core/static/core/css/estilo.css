@@ -1,7 +1,9 @@
 body{
     overflow-x:hidden;
     overflow-y: auto;
+    background-color: rgb(59, 59, 59);
 }
+
 
 .principal{
     background-color: rgb(59, 59, 59);
@@ -26,10 +28,9 @@ body{
   width: 100vw;
   height: 1080px;
 }
-.info{
+.informacion{
   width: 80vw;
   margin-left: 10vw;
-  margin-block-start: 10vh;
 }
 
 .navegador3{
@@ -189,3 +190,4 @@ body{
   margin-left: 20vw;
   width: 60vw;
 }
+

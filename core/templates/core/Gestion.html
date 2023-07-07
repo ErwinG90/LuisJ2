@@ -1,0 +1,210 @@
+{% extends 'core/base.html' %}
+
+    {% block title %}
+      Luis Jara - El Concierto 
+    {% endblock %}
+    
+    {% load static %}
+
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'core/'%}css/estilo.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    {% endblock %}
+
+    {% block javaScri %}
+      <link rel="stylesheet" href="{% static 'core/'%}js/scrpit.js">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    {% endblock %}
+
+{% block body %} 
+    <center>
+        <h2  style="color:aliceblue">Listado de Conciertos</h2>
+
+        <div style="height: 300px;">
+            <table class="table table-dark table-striped">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Lugar</th>
+                    <th scope="col">Personas total</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                {% for i in Concierto %}
+                <tr>
+                    <td> {{i.id}} </td>
+                    <td> {{i.lugar}} </td>
+                    <td> {{i.personas_total}} </td>
+                    <td> {{i.fecha}} </td>
+                    <td><a href="{% url 'ModificarConcierto' i.id %}">Modificar</a></td>
+                    <td><a href="{% url 'EliminarC' i.id %}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><a href="{% url 'CrearConcierto' %}">Agregar</a></td>
+                </tr>
+            </table>
+        </div>   
+         
+            <div class="pagination">
+                    <span class="step-links ">
+                        {% if Concierto.has_previous %}
+                            <a type="button" class="btn btn-success"  href="?page_c=1">&laquo; Primera </a>
+                            <a type="button" class="btn btn-success" href="?page_c={{ Concierto.previous_page_number }}">Anterior</a>
+                        {% endif %}
+                
+                        <span class="current" style="color:aliceblue">
+                            Page {{ Concierto.number }} of {{ Concierto.paginator.num_pages }}.
+                        </span>
+                
+                        {% if Concierto.has_next %}
+                            <a type="button" class="btn btn-success" href="?page_c={{ Concierto.next_page_number }}">Siguiente</a>
+                            <a type="button" class="btn btn-success" href="?page_c={{ Concierto.paginator.num_pages }}">Ultima &raquo;</a>
+                        {% endif %}
+                    </span>
+            </div>
+           
+
+        <h2 id="concierto_table" style="color:aliceblue">Listado de Entradas</h2>
+        <div style="height: 300px;">
+            <table class="table table-dark table-striped">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Entrada</th>
+                    <th scope="col">Concierto</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                {% for i in Entrada %}
+                <tr>
+                    <td> {{i.id}} </td>
+                    <td> {{i.tipo_entrada}} </td>
+                    <td> {{i.conciert}} </td>
+                    <td> {{i.stock}} </td>
+                    <td> {{i.precio}} </td>
+                    <td><a href="{% url 'ModificarEntrada' i.id %}">Modificar</a></td>
+                    <td><a href="{% url 'EliminarE' i.id %}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><a href="{% url 'CrearEntrada' %}">Agregar</a></td>
+                </tr>
+            </table>
+        </div>
+            <div class="pagination">
+                <span class="step-links ">
+                    {% if Entrada.has_previous %}
+                        <a type="button" class="btn btn-success"  href="?page_e=1">&laquo; Primera </a>
+                        <a type="button" class="btn btn-success" href="?page_e={{ Entrada.previous_page_number }},concierto_table">Anterior</a>
+                    {% endif %}
+            
+                    <span class="current" style="color:aliceblue">
+                        Page {{ Entrada.number }} of {{ Entrada.paginator.num_pages }}.
+                    </span>
+            
+                    {% if Entrada.has_next %}
+                        <a type="button" class="btn btn-success" href="?page_e={{ Entrada.next_page_number }}">Siguiente</a>
+                        <a type="button" class="btn btn-success" href="?page_e={{ Entrada.paginator.num_pages }}">Ultima &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+
+            
+
+
+        <h2 style="color:aliceblue">Listado de Clientes</h2>
+        <div style="height: 300px;">
+            <table class="table table-dark table-striped">
+                <tr> 
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contraseña</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                {% for i in Cliente %}
+                <tr>
+                    <td> {{i.username}} </td>
+                    <td> {{i.email}} </td>
+                    <td> {{i.password}} </td>
+                    <td><a href="{% url 'ModificarCliente' i.username %}">Modificar</a></td>
+                    <td><a href="{% url 'EliminarCli' i.username %}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><a href="{% url 'CrearCliente' %}">Agregar</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="pagination">
+            <span class="step-links ">
+                {% if Cliente.has_previous %}
+                    <a type="button" class="btn btn-success"  href="?page_cli=1">&laquo; Primera </a>
+                    <a type="button" class="btn btn-success" href="?page_cli={{ Cliente.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current" style="color:aliceblue">
+                    Page {{ Cliente.number }} of {{ Cliente.paginator.num_pages }}.
+                </span>
+        
+                {% if Cliente.has_next %}
+                    <a type="button" class="btn btn-success" href="?page_cli={{ Cliente.next_page_number }}">Siguiente</a>
+                    <a type="button" class="btn btn-success" href="?page_cli={{ Cliente.paginator.num_pages }}">Ultima &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+
+
+        <h2 style="color:aliceblue">Listado de Pedidos</h2>
+        <div style="height: 300px;">
+            <table class="table table-dark table-striped">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Concierto</th>
+                    <th scope="col">Entrada</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+                {% for i in Pedido %}
+                <tr>
+                    <td> {{i.id}} </td>
+                    <td> {{i.cliente}} </td>
+                    <td> {{i.Concierto}} </td>
+                    <td> {{i.entrada}} </td>
+                    <td> {{i.cantidad}} </td>
+                    <td> {{i.total}} </td>
+                    <td><a href="{% url 'ModificarPedido' i.id %}">Modificar</a></td>
+                    <td><a href="{% url 'EliminarP' i.id %}">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td><a href="{% url 'CrearPedido' %}">Agregar</a></td>
+                </tr>
+            </table>
+        </div>
+        <div class="pagination">
+            <span class="step-links ">
+                {% if Pedido.has_previous %}
+                    <a type="button" class="btn btn-success"  href="?page_p=1">&laquo; Primera </a>
+                    <a type="button" class="btn btn-success" href="?page_p={{ Pedido.previous_page_number }}">Anterior</a>
+                {% endif %}
+        
+                <span class="current" style="color:aliceblue">
+                    Page {{ Pedido.number }} of {{ Pedido.paginator.num_pages }}.
+                </span>
+        
+                {% if Pedido.has_next %}
+                    <a type="button" class="btn btn-success" href="?page_p={{ Pedido.next_page_number }}">Siguiente</a>
+                    <a type="button" class="btn btn-success" href="?page_p={{ Pedido.paginator.num_pages }}">Ultima &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+    </center>
+{% endblock %}

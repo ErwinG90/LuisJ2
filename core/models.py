@@ -1,37 +1,36 @@
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.core.validators import RegexValidator, MinLengthValidator, MinValueValidator, MaxLengthValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 # Create your models here.
-class Ingreso(models.Model):
-    nombre = models.CharField(max_length=200)
-    email = models.CharField(max_length=80)
-    contraseña = models.CharField(max_length=80)
 
-    def __str__(self):
-        return self.nombre
     
 class Concierto(models.Model):
-    lugar = models.CharField(max_length=100)
-    personas_total = models.IntegerField()
-    fecha = models.DateTimeField()
+    id = models.AutoField(primary_key=True)
+    lugar = models.CharField(max_length=100,null=False)
+    personas_total = models.IntegerField(null=False,validators=[MinValueValidator(0)])
+    fecha = models.DateTimeField(null=False)
 
     def __str__(self):
         return self.lugar
     
 class Entrada(models.Model):
-    tipo_entrada = models.CharField(max_length=200)
-    conciert = models.ForeignKey(Concierto, on_delete=CASCADE)
-    stock = models.IntegerField()
-    precio = models.IntegerField()
+    id = models.AutoField(primary_key=True)
+    tipo_entrada = models.CharField(null=False,max_length=200)
+    conciert = models.ForeignKey(Concierto,null=False, on_delete=CASCADE)
+    stock = models.IntegerField(null=False,validators=[MinValueValidator(0)])
+    precio = models.IntegerField(null=False,validators=[MinValueValidator(0)])
 
     def __str__(self):
         return self.tipo_entrada
 
 class Pedido(models.Model):
-    cliente = models.ForeignKey(Ingreso, on_delete=CASCADE)
-    Concierto = models.ForeignKey(Concierto, on_delete=CASCADE)
-    entrada = models.ForeignKey(Entrada, on_delete=CASCADE)
-    cantidad = models.IntegerField()
+    id = models.AutoField(primary_key=True)
+    cliente = models.ForeignKey(User,null=False, on_delete=CASCADE)
+    Concierto = models.ForeignKey(Concierto,null=False, on_delete=CASCADE)
+    entrada = models.ForeignKey(Entrada,null=False, on_delete=CASCADE)
+    cantidad = models.IntegerField(null=False,validators=[MinValueValidator(0)])
     objeto_p = Entrada.objects.first()
     precio = Entrada.objects.get(pk=objeto_p.pk).precio
     

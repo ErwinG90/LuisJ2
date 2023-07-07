@@ -1,56 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luis Jara - Login</title>
+{% extends 'core/base.html' %}
+
+    {% block title %}
+      Tienda
+    {% endblock %}
+    
     {% load static %}
+
     {% block css %}
     <link rel="stylesheet" href="{% static 'core/'%}css/estilo.css">
-    {% endblock %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="{% static 'core/'%}js/scrpit.js"></script>
-  </head>
-<div class="principal">  
-  <div class="navegador">
-    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-        <div class="container-fluid" >
-          <a class="navbar-brand" href="{% url 'home' %}"><img width="150px" src="https://www.luisjara.cl/img/logo.png" alt=""></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'info' %}">¿Quien soy?</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'eventos' %}">Eventos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'tienda' %}">Tienda</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'ingreso' %}">Ingresar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'contactos' %}">Contactos</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-</div>
-<body>
+    {% endblock %}
+
+    {% block javaScri %}
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+      <script src="{% static 'core/'%}js/scrpit.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    {% endblock %}
+
+{% block body %}
 
 
 
   <div class="containerform">
+      <center>
         <br>
-        
-
         <form action="" method="POST" id="formulario" >
             {% csrf_token %}
             <br>
@@ -60,26 +33,12 @@
 
             <br><br>
 
-        <input type="submit" value="Login" class="btn btn-danger">
-        <input type="reset" id="reset" value="Limpiar" class="btn btn-primary">
-        <br><br><br><br>
-        <h1 style="color: aliceblue; ;">Click aqui si no esta registrado,<a style="text-decoration: none" href="{% url 'registro' %}"> Registro</a></h1>
-    </form>
+            <input type="submit" value="Login" class="btn btn-danger">
+            <input type="reset" id="reset" value="Limpiar" class="btn btn-primary">
+            <br><br><br><br>
+            <h1 style="color: aliceblue; ;">Click aqui si no esta registrado,<a style="text-decoration: none" href="{% url 'registro' %}"> Registro</a></h1>
+        </form>
+      </center>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-        
 
-
-          
-    
-
-
-    
-
-    
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.min.js" integrity="sha384-heAjqF+bCxXpCWLa6Zhcp4fu20XoNIA98ecBC1YkdXhszjoejr5y9Q77hIrv8R9i" crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}
